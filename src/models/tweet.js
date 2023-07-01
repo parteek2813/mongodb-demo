@@ -16,5 +16,10 @@ const tweetSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// defining a virtual here.
+tweetSchema.virtual("contentWithEmail").get(function process() {
+  return this.content + "\n" + "Created By: " + this.userEmail;
+});
+
 const Tweet = mongoose.model("Tweet", tweetSchema); // mongo auto names plural
 module.exports = Tweet;
