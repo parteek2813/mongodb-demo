@@ -26,6 +26,17 @@ app.listen(PORT, async () => {
   // await tweet.save();
 
   const tweetRepo = new TweetRepository();
-  const tweet = await tweetRepo.get("649fe3606802b54d9a599907");
+  // const tweet = await tweetRepo.get("649fe3606802b54d9a599907");
+  const tweet = await tweetRepo.update("649fe3606802b54d9a599907", {
+    content: "now i am too good",
+  });
+
+  tweet.comments.push({
+    content: "First Comment",
+  });
+
+  await tweet.save();
+
+  // when we does findByIdAndUpdate, then it updates doc properly but return the current old doc only
   console.log(tweet);
 });

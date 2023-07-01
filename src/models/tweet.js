@@ -6,6 +6,14 @@ const tweetSchema = new mongoose.Schema(
     userEmail: {
       type: String,
     },
+    comments: [
+      {
+        content: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );
