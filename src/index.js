@@ -7,6 +7,7 @@ const Tweet = require("./models/tweet");
 const PORT = 3000;
 
 const TweetRepository = require("./repository/tweet-repository");
+const Comment = require("./models/comments");
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
@@ -27,16 +28,30 @@ app.listen(PORT, async () => {
 
   const tweetRepo = new TweetRepository();
   // const tweet = await tweetRepo.get("649fe3606802b54d9a599907");
-  const tweet = await tweetRepo.update("649fe3606802b54d9a599907", {
-    content: "now i am too good",
-  });
+  // const tweet = await tweetRepo.update("649fe3606802b54d9a599907", {
+  //   content: "now i am too good",
+  // });
 
-  tweet.comments.push({
-    content: "First Comment",
-  });
+  // tweet.comments.push({
+  //   content: "First Comment",
+  // });
 
-  await tweet.save();
+  // await tweet.save();
 
-  // when we does findByIdAndUpdate, then it updates doc properly but return the current old doc only
+  // // when we does findByIdAndUpdate, then it updates doc properly but return the current old doc only
+  // console.log(tweet);
+
+  // const tweet = await tweetRepo.create({
+  //   content: "Tweet with comment schema",
+  // });
+  // console.log(tweet);
+
+  // const comment = await Comment.create({
+  //   content: "This might definately be new comment ",
+  // });
+  // tweet.comments.push(comment);
+  // await tweet.save();
+
+  const tweet = await tweetRepo.getWithComments("649feeeeb9b4ffcfab8793a3");
   console.log(tweet);
 });
