@@ -53,6 +53,6 @@ app.listen(PORT, async () => {
   // await tweet.save();
 
   // const tweet = await tweetRepo.getWithComments("649feeeeb9b4ffcfab8793a3");
-  const tweet = await tweetRepo.getAll(2, 4);
-  console.log(tweet[2].contentWithEmail);
+  const tweet = await tweetRepo.create({ content: "With hooks now" });
+  console.log(tweet);
 });

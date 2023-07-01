@@ -21,5 +21,11 @@ tweetSchema.virtual("contentWithEmail").get(function process() {
   return this.content + "\n" + "Created By: " + this.userEmail;
 });
 
+tweetSchema.pre("save", function (next) {
+  console.log("Inside a hook");
+  this.content = this.content + "....";
+  next();
+});
+
 const Tweet = mongoose.model("Tweet", tweetSchema); // mongo auto names plural
 module.exports = Tweet;
